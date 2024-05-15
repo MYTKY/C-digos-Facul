@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void dois_maiores (int v[], int n, int *p_maior, int *s_maior){
+    int aux;
+    *p_maior = v[0];
+    *s_maior = v[0];
+    for (int i = 1; i < n; i++){
+        if (*p_maior < v[i]){
+            *p_maior = v[i];
+            aux = i;
+        }
+    }
+    v[aux] = 0;
+
+    for (int i = 1; i < n; i++){
+        if (*s_maior < v[i] || *s_maior == v[i]){
+            *s_maior = v[i];
+            }
+        }
+    }
+
+
+int main(){
+    int n;
+
+    scanf("%d", &n);
+
+    int v[n];
+    for (int i = 0; i < n; i++){
+        scanf("%d", &v[i]);
+
+    }
+    int p_maior, s_maior;
+
+    dois_maiores(v, n, &p_maior, &s_maior);
+    printf("\n%d", p_maior);
+    printf("\n%d", s_maior);
+}
