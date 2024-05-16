@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main(){
+    int *coef;
+    int n, i, j;
+    int soma, k, x;
+
+    scanf("%d", &n);
+    coef = (int*) calloc (n, sizeof(int));
+
+    if (!coef)
+        return 0;
+    printf("\nCoeficientes: ");
+    for (i = 0; i<n;i++)
+        scanf("%d", &coef[i]);
+
+    printf("\nCasos de testes: ");
+    scanf("%d", &k);
+    for (i = 1; i <= k; i++){
+        printf("X:\n ");
+        scanf("%d", &x);
+        soma = 0;
+        for (j = 0; j <= n; j++){
+            soma += coef[j] * pow(x,j);
+        }
+        printf("Valor: %d\n", soma);
+    }
+    free(coef);
+    return 0;
+}
