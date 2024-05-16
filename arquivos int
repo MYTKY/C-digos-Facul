@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *file;
+
+    int n;
+
+    file = fopen("TESTE 1C.txt", "r");
+
+    if (!file){
+        printf("Erro de abrir o arquivo.");
+        return 0;
+    }
+
+    char v[100];
+
+    while (fgets(v, 100, file)){
+        printf("%s", v);
+    }
+
+    fclose(file);
+    return 0;
+}
+
