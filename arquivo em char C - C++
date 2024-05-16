@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *file;
+
+    file = fopen("texto.txt", "r");
+
+    if (!file){
+        printf("Erro de abrir o arquivo.");
+        return 0;
+    }
+
+    char v[100];
+
+    while (fgets(v, 100, file) != NULL){ //ENQUANTO ESTA FUNÇÃO RECEBER ALGUM VALOR, ELE VAI CONTINUAR ATÉ 100, OU ATÉ NÃO RECEBER NADA.
+        printf("%s", v);
+    }
+
+    fclose(file);
+    return 0;
+}
