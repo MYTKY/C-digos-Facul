@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 100
+
+struct Pessoa{
+    char nome[tam];
+    int cod;
+
+};
+
+
+int main(){
+    int i;
+    FILE *prd;
+    FILE *res;
+
+    Pessoa v[4];
+    prd = fopen("produtos.txt", "r");
+    res = fopen("resultados.txt", "w");
+
+    if (!prd){
+        printf("Erro");
+        return 0;
+    }
+
+    for (i = 0; i < 4; i++){
+        fscanf(prd, "%d %[^\n]", &v[i].cod, v[i].nome);
+    };
+
+    int n;
+    fscanf(prd, "%d", &n);
+
+    int votos[n];
+    int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
+    int br = 0, nulo = 0;
+
+    for (i = 0; i<n; i++){
+        fscanf(prd, "%d", &votos[i]);
+        if (votos[i] == 1){
+            c1++;
+        }
+        else if (votos[i] == 2){
+            c2++;
+        }
+        else if (votos[i] == 3){
+            c3++;
+        }
+        else if (votos[i] == 4){
+            c4++;
+        }
+        else if (votos[i] == 5){
+            br++;
+        }
+        else if (votos[i] == 6){
+            nulo++;
+        }
+    };
+
+    float porc;
+
+    porc = (((float)br / n) * 100.0);
+
+    fprintf(res, "%.2f\n", porc);
+
+
+    fprintf(res, "%d %s %d\n", v[0].cod, v[0].nome, c1);
+    fprintf(res, "%d %s %d\n", v[1].cod, v[1].nome, c2);
+    fprintf(res, "%d %s %d\n", v[2].cod, v[2].nome, c3);
+    fprintf(res, "%d %s %d\n", v[3].cod, v[3].nome, c4);
+
+    fclose(prd);
+    fclose(res);
+    return 0;
+}
